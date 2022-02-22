@@ -20,7 +20,7 @@ const Header = () => {
 			</header>
 			<div className={`container text-center ${styles.headerInfo}`}>
 				<h1 className={styles.headerName}>{ state.name }</h1>
-				<h2 className={styles.headerTitle}>{ state.title }</h2>
+				<p className={styles.headerTitle}>{ state.title }</p>
 			</div>	
 		</div>	
 	)
