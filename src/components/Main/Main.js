@@ -1,19 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Outlet, useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
-import { UPDATE_NAME, UPDATE_TITLE } from '../constant/actions'
+import { UPDATE_NAME, UPDATE_TITLE } from '../../constant/actions'
 
-import Header from './Header'
-import { Context } from '../context/AppContext'
+import Header from '../Header/Header'
+import { Context } from '../../context/AppContext'
+
+import styles from './Main.module.css'
 
 const Main = () => {
     const navigate = useNavigate();
     const { title, name } = useParams();
     const [loading, setLoading] = useState(true);
+    const [loadmore, setLoadmore] = useState(false);
     const [data, setData] = useState([]);
     const [_, dispatch] = useContext(Context);
 
-    const fetchData = async () =>{  
+    const fetchData = async (firsttime = false) =>{  
         try {
             const { data: response } = await axios.get(`http://localhost:8080/gallery/${name}/${title}`);
             
@@ -21,6 +24,10 @@ const Main = () => {
             
             setName(name.toUpperCase())
             setTitle(response.title)
+
+            if (firsttime) {
+                setLoading(false)
+            }
 
         } catch (error) {
             navigate('/not-found', { replace: true });
@@ -36,15 +43,16 @@ const Main = () => {
     }
 
     useEffect(() => {
-        fetchData()
+        fetchData(true)
     }, [])
 
     return (
-        <div>
-            <Header />
+        loading ? <div>Loading..</div> :
+            <div className={styles.main}>
+                <Header />
 
-            <Outlet />
-        </div>
+                <Outlet />
+            </div>
     )
 }
 

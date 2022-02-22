@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Home from './components/Home/Home'
-import Main from './components/Main'
+import Main from './components/Main/Main'
 import Gallery from './components/Gallery'
 import NoPage from './components/NoPage'
 

@@ -1,0 +1,27 @@
+.navHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLogo {
+    color: inherit;
+    font-size: 36px;
+    padding: 8px 16px;
+}
+
+.headerInfo {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.headerName {
+    font-weight: bolder;
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.headerTitle {
+    font-size: 18px;
+    font-weight: 400;
+}
