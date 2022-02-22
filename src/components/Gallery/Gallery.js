@@ -1,15 +1,17 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
 import { Context } from '../../context/AppContext'
 import useWindowDimensions from '../../hook/dimension'
 
-import Image from './Image'
+import Image from './Image/Image'
+import Modal from './Modal/Modal'
 
 import styles from './Gallery.module.css'
 
 const Gallery = () => {
     const { width } = useWindowDimensions()
     const [{ data }] = useContext(Context)
+
+    const [activeImage, setActiveImage] = useState({})
 
     const renderedImage = () => {
         if (!data) {
@@ -24,7 +26,7 @@ const Gallery = () => {
                     <div className={styles.galleryWrapper}>
                         {
                             data.map((img, idx) => (
-                                <Image key={`data-${idx}`} url={img} />
+                                <Image key={`data-${idx}`} url={img} setActiveImage={setActiveImage} />
                             ))
                         }
                     </div>
@@ -43,7 +45,7 @@ const Gallery = () => {
                 <div className={styles.galleryWrapper}>
                     {
                         column1.map((img, idx) => (
-                            <Image key={`col-1-${idx}`} url={img} />
+                            <Image key={`col-1-${idx}`} url={img} setActiveImage={setActiveImage} />
                         ))
                     }
                 </div>
@@ -51,7 +53,7 @@ const Gallery = () => {
                 <div className={styles.galleryWrapper}>
                     {
                         column2.map((img, idx) => (
-                            <Image key={`col-2-${idx}`} url={img} />
+                            <Image key={`col-2-${idx}`} url={img} setActiveImage={setActiveImage} />
                         ))
                     }
                 </div>
@@ -59,7 +61,7 @@ const Gallery = () => {
                 <div className={styles.galleryWrapper}>
                     {
                         column3.map((img, idx) => (
-                            <Image key={`col-3-${idx}`} url={img} />
+                            <Image key={`col-3-${idx}`} url={img} setActiveImage={setActiveImage} />
                         ))
                     }
                 </div>
@@ -73,6 +75,12 @@ const Gallery = () => {
         <div className={styles.gallery}>
             
             { renderedImage() }
+
+            <Modal 
+                img={activeImage} 
+                show={"url" in activeImage ? true : false} 
+                close={() => setActiveImage({})}
+            />
 
         </div>
     )
