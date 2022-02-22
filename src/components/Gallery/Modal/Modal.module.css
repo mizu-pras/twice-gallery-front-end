@@ -42,12 +42,12 @@
 /* The Close Button */
 .close {
     position: absolute;
-    top: 15px;
-    right: 35px;
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 42px;
     font-weight: bold;
     transition: 0.3s;
+    top: 8px;
+    right: 8px;
 }
   
 .close:hover,
@@ -55,4 +55,11 @@
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media only screen and (min-width: 992px) {
+    .close {
+        top: 16px;
+        right: 24px;
+    }
 }

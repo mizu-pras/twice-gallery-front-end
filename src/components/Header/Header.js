@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Context } from '../../context/AppContext'
 import { Link } from 'react-router-dom'
 
+import { IoHomeOutline } from "react-icons/io5"
+
 import styles from './Header.module.css'
 
 const Header = () => {
@@ -15,7 +17,7 @@ const Header = () => {
 		<div className='opacity'>
 			<header className={styles.navHeader}>
 				<Link to='/' className={styles.navLogo}>
-					<i className="fa fa-home"></i>
+					<IoHomeOutline />
 				</Link>
 			</header>
 			<div className={`container text-center ${styles.headerInfo}`}>

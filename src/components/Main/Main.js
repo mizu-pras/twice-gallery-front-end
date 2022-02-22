@@ -6,6 +6,7 @@ import { UPDATE_NAME, UPDATE_TITLE, SET_DATA, APPEND_DATA } from '../../constant
 import Loading from './Loading'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
+
 import { Context } from '../../context/AppContext'
 
 import styles from './Main.module.css'
