@@ -3,7 +3,8 @@ import { Outlet, useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { UPDATE_NAME, UPDATE_TITLE, SET_DATA, APPEND_DATA } from '../../constant/actions'
 
-import Loading from './Loading'
+import Loading from './Loading/Loading'
+import ToTheTop from './ToTheTop/ToTheTop'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 
@@ -93,6 +94,8 @@ const Main = () => {
                                 
                         }
                     </div>
+
+                    <ToTheTop />
                 </div>
                 
                 <Footer />
