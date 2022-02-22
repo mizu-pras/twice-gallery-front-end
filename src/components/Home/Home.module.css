@@ -1,0 +1,48 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 1500px;
+    min-height: 100vh;
+    margin: auto;
+    padding-bottom: 64px!important;
+}
+
+.homeTitleContainer {
+    padding: 64px 0;
+}
+
+.homeTitle {
+    font-size: 36px;
+}
+
+.linkContainer {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.linkWrap {
+    margin-top: 42px;
+}
+
+.linkTitle {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #555;
+}
+
+.linkItems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.linkItems a {
+    color: #ff9800!important;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.linkItems a:hover {
+    text-decoration: underline;
+}
