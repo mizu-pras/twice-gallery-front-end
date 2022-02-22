@@ -7,6 +7,7 @@ import styles from './Home.module.css'
 import Footer from '../Footer/Footer'
 
 const Home = () => {
+    const [loading, setLoading] = useState(true)
     const [menus, setMenus] = useState({})
 
     useEffect(() => {
@@ -19,6 +20,8 @@ const Home = () => {
             } catch (error) {
                 console.log(error.message)
             }
+
+            setLoading(false)
         }
 
         fetchMenus()
@@ -29,8 +32,11 @@ const Home = () => {
         return (
             <div className={styles.linkContainer}>
 
-            {
-                Object.keys(menus).map(key => {
+            {  
+                loading ? <div className='text-center'>
+                    <p>Loading...</p>
+                </div> 
+                : Object.keys(menus).map(key => {
                     return (
                         <div key={key} className={styles.linkWrap}>
                             <div className={styles.linkTitle}>{ key }</div>
