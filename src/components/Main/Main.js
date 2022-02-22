@@ -18,63 +18,56 @@ const Main = () => {
     const { title, name } = useParams()
     const [loading, setLoading] = useState(true)
     const [loadmore, setLoadmore] = useState(false)
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
     const [lastPage, setLastPage] = useState(0)
 
-    const [_, dispatch] = useContext(Context);
-
-    const fetchData = async (firsttime = false) => {  
-        if (!firsttime) {
-            setLoadmore(true)
-        }
-
-        const url = process.env.REACT_APP_API
-
-        try {
-            const { data: response } = await axios.get(`${url}/gallery/${name}/${title}?page=${currentPage + 1}`);
-            const { data, page, totalPage } = response            
-
-            const type = firsttime ? SET_DATA : APPEND_DATA
-
-            dispatch({ type, payload: data })
-
-            setLastPage(totalPage)
-            setCurrentPage(page)
-
-            if (firsttime) {
-                setName(name.toUpperCase())
-                setTitle(response.title)
-
-                setLoading(false)
-            }
-
-        } catch (error) {
-            if (firsttime) {
-                navigate('/not-found', { replace: true });   
-                return 
-            }
-        }
-
-        if (!firsttime) {
-            setLoadmore(false)
-        }
-    }
-
-    const setName = (data) => {
-        dispatch({ type: UPDATE_NAME, payload: data })
-    }
-
-    const setTitle = (data) => {
-        dispatch({ type: UPDATE_TITLE, payload: data })
-    }
+    const [, dispatch] = useContext(Context);
 
     const loadMoreHandle = () => {
-        fetchData()
+        setCurrentPage(prevPage => prevPage + 1)
     }
 
     useEffect(() => {
-        fetchData(true)
-    }, [])
+        const firsttime = currentPage === 1 ? true : false
+        const fetchApi = async () => {
+            if (!firsttime) {
+                setLoadmore(true)
+            }
+
+            const url = process.env.REACT_APP_API
+
+            try {
+            
+                const { data: response } = await axios.get(`${url}/gallery/${name}/${title}?page=${currentPage}`);
+                const { data, totalPage } = response
+                
+                const type = firsttime ? SET_DATA : APPEND_DATA
+
+                dispatch({ type, payload: data })
+
+                if (firsttime) {
+                    dispatch({ type: UPDATE_NAME, payload: name.toUpperCase() })
+                    dispatch({ type: UPDATE_TITLE, payload: response.title })
+
+                    setLastPage(totalPage)
+                    setLoading(false)
+                }
+
+            } catch (error) {
+                if (firsttime) {
+                    navigate('/not-found', { replace: true })
+                    return
+                }
+            }
+
+            if (!firsttime) {
+                setLoadmore(false)
+            }
+        }
+
+        fetchApi()
+
+    }, [navigate, currentPage, dispatch, name, title])
 
     return (
         loading ? <Loading /> :

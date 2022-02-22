@@ -24,7 +24,7 @@
 }
 
 .animateFadeIn {
-    animation: fadeIn 700ms ease-in-out 1s both;
+    animation: fadeIn 0.5s ease-in-out;
     cursor: pointer;
 }
 

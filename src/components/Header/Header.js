@@ -9,10 +9,6 @@ import styles from './Header.module.css'
 const Header = () => {
 	const [state] = useContext(Context)
 
-	const renderUrl = {
-
-	}
-
 	return (
 		<div className='opacity'>
 			<header className={styles.navHeader}>

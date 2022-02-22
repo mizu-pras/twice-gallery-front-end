@@ -9,7 +9,7 @@ const Modal = ({ img, show, close }) => {
     const { width, height } = useWindowDimensions()
 
     const windowOrientation = width > height ? 'landscape' : 'portrait'
-    const styleImg = windowOrientation == 'landscape' && img.orientation == 'portrait' 
+    const styleImg = windowOrientation === 'landscape' && img.orientation === 'portrait' 
         ? {
             height: '100%'
         } 
@@ -25,7 +25,7 @@ const Modal = ({ img, show, close }) => {
             </span>
 
             <div className={styles.modalContainer} style={{ maxWidth: height < width ? `${height}px` : `${width}px` }}>
-                <img className={`${styles.modalContent} ${show ? styles.zoom : ''}`} src={img?.url} style={styleImg} />
+                <img className={`${styles.modalContent} ${show ? styles.zoom : ''}`} src={img?.url} style={styleImg} alt='' />
             </div>
 
         </div>

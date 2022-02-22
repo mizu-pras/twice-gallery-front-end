@@ -8,17 +8,17 @@ const ToTheTop = () => {
 
     useEffect(() => {
 
-        const toggleVisibility = () => {
-            if (window.pageYOffset > 300) {
+        function toggleVisibility() {
+            if (window.pageYOffset > 250) {
                 setIsVisible(true)
             } else {
                 setIsVisible(false)
             }
         }
 
-        document.addEventListener("scroll", function(e) {
-            toggleVisibility();
-        });
+        document.addEventListener("scroll", toggleVisibility)
+
+        return () => document.removeEventListener("scroll", toggleVisibility)
 
     }, [])
 
@@ -35,7 +35,7 @@ const ToTheTop = () => {
             { isVisible && 
                 <button 
                     type='button' 
-                    className={styles.buttonToTheTop}
+                    className={`${styles.buttonToTheTop} ${isVisible ? styles.animateFadeIn : ''}`}
                     onClick={scrollToTop}
                 >
                     <IoIosArrowUp />
