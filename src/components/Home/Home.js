@@ -1,40 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
 import styles from './Home.module.css'
 
 import Footer from '../Footer/Footer'
 
-const linkRoadmap = {
-	'tzuyu': [
-		'yes-i-am-tzuyu',
-        '4th-world-tour-tzuyu'
-	],
-	'mina': [
-		'yes-i-am-mina'
-	],
-    'jihyo': [
-		'yes-i-am-jihyo'
-	],
-	'sana': [
-		'yes-i-am-sana'
-	]
-}
-
 const Home = () => {
+    const [menus, setMenus] = useState({})
+
+    useEffect(() => {
+        const fetchMenus = async () => {
+            const url = process.env.REACT_APP_API
+            try {
+                const { data } = await axios.get(`${url}/menus`)
+
+                setMenus(data)
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+
+        fetchMenus()
+    }, [])
+
     const renderedMenu = () => {
 
         return (
             <div className={styles.linkContainer}>
 
             {
-                Object.keys(linkRoadmap).map(key => {
+                Object.keys(menus).map(key => {
                     return (
                         <div key={key} className={styles.linkWrap}>
                             <div className={styles.linkTitle}>{ key }</div>
                             
                             <div className={styles.linkItems}>
                                 {
-                                    linkRoadmap[key].map(link => (
+                                    menus[key].map(link => (
                                         <Link key={link} to={`/gallery/${key}/${link}`}>{ link }</Link>
                                     ))
                                 }
@@ -54,7 +57,7 @@ const Home = () => {
             <div className={`container ${styles.homeContainer}`}>
 
                 <div className={`text-center ${styles.homeTitleContainer}`}>
-                    <h1 className={styles.homeTitle}>TWICE Photobook (Scans) </h1>
+                    <h1 className={styles.homeTitle}>TWICE Photo Collection</h1>
                 </div>
 
                 { renderedMenu() }

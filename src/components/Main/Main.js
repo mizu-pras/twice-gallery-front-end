@@ -25,8 +25,10 @@ const Main = () => {
             setLoadmore(true)
         }
 
+        const url = process.env.REACT_APP_API
+
         try {
-            const { data: response } = await axios.get(`http://localhost:8080/gallery/${name}/${title}?page=${currentPage + 1}`);
+            const { data: response } = await axios.get(`${url}/gallery/${name}/${title}?page=${currentPage + 1}`);
             const { data, page, totalPage } = response            
 
             const type = firsttime ? SET_DATA : APPEND_DATA
