@@ -28,16 +28,6 @@
     display: block;
     /* width: 100%; */
 }
-
-.zoom {
-    animation-name: zoom;
-    animation-duration: 0.5s;
-}
-  
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
-}
   
 /* The Close Button */
 .close {

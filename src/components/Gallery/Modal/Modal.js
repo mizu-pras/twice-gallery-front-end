@@ -25,7 +25,7 @@ const Modal = ({ img, show, close }) => {
             </span>
 
             <div className={styles.modalContainer} style={{ maxWidth: height < width ? `${height}px` : `${width}px` }}>
-                <img className={`${styles.modalContent} ${show ? styles.zoom : ''}`} src={img?.url} style={styleImg} alt='' />
+                <img className={styles.modalContent} src={img?.url} style={styleImg} alt='' />
             </div>
 
         </div>
