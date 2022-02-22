@@ -3,6 +3,7 @@ import { Outlet, useParams, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { UPDATE_NAME, UPDATE_TITLE, SET_DATA, APPEND_DATA } from '../../constant/actions'
 
+import Loading from './Loading'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { Context } from '../../context/AppContext'
@@ -74,7 +75,7 @@ const Main = () => {
     }, [])
 
     return (
-        loading ? <div>Loading..</div> :
+        loading ? <Loading /> :
             <div>
                 <div className={styles.main}>
                     <Header />
