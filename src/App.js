@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from './components/Home/Home'
 import Main from './components/Main/Main'
 import Gallery from './components/Gallery/Gallery'
-import NoPage from './components/NoPage'
+import NoPage from './components/NoPage/NoPage'
 
 import './App.css'
 
