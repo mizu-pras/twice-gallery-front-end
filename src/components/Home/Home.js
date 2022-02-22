@@ -6,7 +6,8 @@ import Footer from '../Footer/Footer'
 
 const linkRoadmap = {
 	'tzuyu': [
-		'yes-i-am-tzuyu'
+		'yes-i-am-tzuyu',
+        '4th-world-tour-tzuyu'
 	],
 	'mina': [
 		'yes-i-am-mina'
