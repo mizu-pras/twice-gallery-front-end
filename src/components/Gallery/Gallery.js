@@ -7,19 +7,9 @@ import Image from './Image'
 
 import styles from './Gallery.module.css'
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
-
 const Gallery = () => {
     const { width } = useWindowDimensions()
     const [{ data }] = useContext(Context)
-
-    console.log('width', width)
 
     const renderedImage = () => {
         if (!data) {

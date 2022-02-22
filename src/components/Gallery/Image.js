@@ -9,6 +9,7 @@ const Image = ({ url }) => {
             { !loaded && <div className={styles.loadingImage}></div> }
             <img
                 className={styles.img} 
+                style={!loaded ? { display: 'none' } : {}}
                 src={url} alt='' 
                 onLoad={() => setLoaded(true)}
             />

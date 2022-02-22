@@ -18,7 +18,7 @@ const reducer = (state, action) => {
         case SET_DATA:
             return {...state, data: action.payload}
         case APPEND_DATA:
-            return {...state, data: [...state.data, action.payload]}
+            return {...state, data: [...state.data, ...action.payload]}
         default:
             return state
     }

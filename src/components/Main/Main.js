@@ -10,29 +10,48 @@ import { Context } from '../../context/AppContext'
 import styles from './Main.module.css'
 
 const Main = () => {
-    const navigate = useNavigate();
-    const { title, name } = useParams();
-    const [loading, setLoading] = useState(true);
-    const [loadmore, setLoadmore] = useState(false);
+    const navigate = useNavigate()
+
+    const { title, name } = useParams()
+    const [loading, setLoading] = useState(true)
+    const [loadmore, setLoadmore] = useState(false)
+    const [currentPage, setCurrentPage] = useState(0)
+    const [lastPage, setLastPage] = useState(0)
+
     const [_, dispatch] = useContext(Context);
 
-    const fetchData = async (firsttime = false) =>{  
+    const fetchData = async (firsttime = false) => {  
+        if (!firsttime) {
+            setLoadmore(true)
+        }
+
         try {
-            const { data: response } = await axios.get(`http://localhost:8080/gallery/${name}/${title}`);
-            
+            const { data: response } = await axios.get(`http://localhost:8080/gallery/${name}/${title}?page=${currentPage + 1}`);
+            const { data, page, totalPage } = response            
+
             const type = firsttime ? SET_DATA : APPEND_DATA
 
-            dispatch({ type, payload: response.data })
-            
-            setName(name.toUpperCase())
-            setTitle(response.title)
+            dispatch({ type, payload: data })
+
+            setLastPage(totalPage)
+            setCurrentPage(page)
 
             if (firsttime) {
+                setName(name.toUpperCase())
+                setTitle(response.title)
+
                 setLoading(false)
             }
 
         } catch (error) {
-            navigate('/not-found', { replace: true });
+            if (firsttime) {
+                navigate('/not-found', { replace: true });   
+                return 
+            }
+        }
+
+        if (!firsttime) {
+            setLoadmore(false)
         }
     }
 
@@ -42,6 +61,10 @@ const Main = () => {
 
     const setTitle = (data) => {
         dispatch({ type: UPDATE_TITLE, payload: data })
+    }
+
+    const loadMoreHandle = () => {
+        fetchData()
     }
 
     useEffect(() => {
@@ -54,6 +77,18 @@ const Main = () => {
                 <div className={styles.main}>
                     <Header />
                     <Outlet />
+
+                    <div className={styles.loadMoreWrapper}>
+                        {
+                            currentPage < lastPage ? (
+                                loadmore ? <span>Loading</span>
+                                    : <button className={styles.loadMoreBtn} type="button" onClick={loadMoreHandle}>
+                                        <span>Load more</span>
+                                    </button>
+                            ) : null
+                                
+                        }
+                    </div>
                 </div>
                 
                 <Footer />
