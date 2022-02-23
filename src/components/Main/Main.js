@@ -76,11 +76,11 @@ const Main = () => {
                 <Helmet>
                     <title>{ state.title }</title>
                     <meta property="og:site_name" content="Twitter" />
-                    <meta property="og:image" content="https://pbs.twimg.com/media/Eo9LXfWW4AAtxeA.jpg" data-rh="true" />
-                    <meta property="og:title" content="lia pics di Twitter" data-rh="true" />
-                    <meta property="og:type" content="article" data-rh="true" />
-                    <meta property="og:description" content="“always radiating the biggest girlfriend material vibes https://t.co/aGwuRIUD0z“" data-rh="true" />
-                    <meta property="og:url" content="https://twitter.com/liarchive/status/1337370516139741185" data-rh="true" />
+                    <meta property="og:image" content="https://pbs.twimg.com/media/Eo9LXfWW4AAtxeA.jpg" />
+                    <meta property="og:title" content="lia pics di Twitter" />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:description" content="“always radiating the biggest girlfriend material vibes https://t.co/aGwuRIUD0z“" />
+                    <meta property="og:url" content="https://twitter.com/liarchive/status/1337370516139741185" />
                 </Helmet>
                 
                 <div className={styles.main}>
