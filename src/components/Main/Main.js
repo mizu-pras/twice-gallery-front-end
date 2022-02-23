@@ -75,12 +75,6 @@ const Main = () => {
             <div>
                 <Helmet>
                     <title>{ state.title }</title>
-                    <meta property="og:site_name" content="Twitter" />
-                    <meta property="og:image" content="https://pbs.twimg.com/media/Eo9LXfWW4AAtxeA.jpg" />
-                    <meta property="og:title" content="lia pics di Twitter" />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:description" content="“always radiating the biggest girlfriend material vibes https://t.co/aGwuRIUD0z“" />
-                    <meta property="og:url" content="https://twice-gallery.netlify.app/gallery/tzuyu/yes-i-am-tzuyu" />
                 </Helmet>
                 
                 <div className={styles.main}>
