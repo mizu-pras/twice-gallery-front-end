@@ -18,53 +18,53 @@ const Gallery = () => {
             return null
         }
 
+        const columns = []
+
         // single
         if (width <= 600) {
-            return (
-                <div className={styles.galleryContainer}>
-                
-                    <div className={styles.galleryWrapper}>
-                        {
-                            data.map((img, idx) => (
-                                <Image key={`data-${idx}`} url={img} setActiveImage={setActiveImage} />
-                            ))
-                        }
-                    </div>
+            columns.push(data.filter((_, i) => i % 2 === 0))
+            columns.push(data.filter((_, i) => i % 2 === 1))
 
-                </div>
-            )
+            // return (
+            //     <div className={styles.galleryContainer}>
+                
+            //         <div className={styles.galleryWrapper}>
+            //             {
+            //                 data.map((img, idx) => (
+            //                     <Image key={`data-${idx}`} url={img} setActiveImage={setActiveImage} />
+            //                 ))
+            //             }
+            //         </div>
+
+            //     </div>
+            // )
+        }
+        else {
+            columns.push(data.filter((_, i) => i % 3 === 0))
+            columns.push(data.filter((_, i) => i % 3 === 1))
+            columns.push(data.filter((_, i) => i % 3 === 2))
         }
 
-        const column1 = data.filter((_, i) => i % 3 === 0)
-        const column2 = data.filter((_, i) => i % 3 === 1)
-        const column3 = data.filter((_, i) => i % 3 === 2)
+        // const column1 = data.filter((_, i) => i % 3 === 0)
+        // const column2 = data.filter((_, i) => i % 3 === 1)
+        // const column3 = data.filter((_, i) => i % 3 === 2)
 
         return (
             <div className={styles.galleryContainer}>
-            
-                <div className={styles.galleryWrapper}>
-                    {
-                        column1.map((img, idx) => (
-                            <Image key={`col-1-${idx}`} url={img} setActiveImage={setActiveImage} />
-                        ))
-                    }
-                </div>
 
-                <div className={styles.galleryWrapper}>
-                    {
-                        column2.map((img, idx) => (
-                            <Image key={`col-2-${idx}`} url={img} setActiveImage={setActiveImage} />
-                        ))
-                    }
-                </div>
-
-                <div className={styles.galleryWrapper}>
-                    {
-                        column3.map((img, idx) => (
-                            <Image key={`col-3-${idx}`} url={img} setActiveImage={setActiveImage} />
-                        ))
-                    }
-                </div>
+                {
+                    columns.map((column, idx) => {
+                        return (
+                            <div key={`container-col-${idx}`} className={styles.galleryWrapper}>
+                                {
+                                    column.map((img, idx) => (
+                                        <Image key={`col-1-${idx}`} url={img} setActiveImage={setActiveImage} />
+                                    ))
+                                }
+                            </div>
+                        )
+                    })
+                }
 
             </div>
         )
