@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Helmet} from 'react-helmet'
 import { Context } from '../../context/AppContext'
 import axios from 'axios'
 
@@ -75,10 +74,6 @@ const Home = () => {
 
     return (
         <>
-            <Helmet>
-                <title>TWICE Photo Collection</title>
-            </Helmet>
-
             <div className={`container ${styles.homeContainer}`}>
 
                 <div className={`text-center ${styles.homeTitleContainer}`}>

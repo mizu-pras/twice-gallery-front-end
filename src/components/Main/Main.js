@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Outlet, useParams, useNavigate } from "react-router-dom"
-import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import { UPDATE_NAME, UPDATE_TITLE, SET_DATA, APPEND_DATA } from '../../constant/actions'
 
@@ -73,10 +72,6 @@ const Main = () => {
     return (
         loading ? <Loading /> :
             <div>
-                <Helmet>
-                    <title>{ state.title }</title>
-                </Helmet>
-                
                 <div className={styles.main}>
                     <Header />
                     <Outlet />
