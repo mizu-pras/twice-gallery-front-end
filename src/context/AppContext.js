@@ -1,12 +1,13 @@
 import React, { createContext, useReducer } from 'react'
-import { UPDATE_NAME, UPDATE_TITLE , SET_DATA, APPEND_DATA} from '../constant/actions'
+import { UPDATE_NAME, UPDATE_TITLE , SET_DATA, APPEND_DATA, SET_MENUS } from '../constant/actions'
 
 export const Context = createContext()
 
 const initalState = {
     name: '',
     title: '',
-    data: []
+    data: [],
+    menus: {}
 }
 
 const reducer = (state, action) => {
@@ -19,6 +20,8 @@ const reducer = (state, action) => {
             return {...state, data: action.payload}
         case APPEND_DATA:
             return {...state, data: [...state.data, ...action.payload]}
+        case SET_MENUS:
+            return {...state, menus: action.payload}
         default:
             return state
     }

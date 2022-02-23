@@ -1,23 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet} from 'react-helmet'
+import { Context } from '../../context/AppContext'
 import axios from 'axios'
+
+import { SET_MENUS } from '../../constant/actions'
 
 import styles from './Home.module.css'
 
 import Footer from '../Footer/Footer'
 
 const Home = () => {
-    const [loading, setLoading] = useState(true)
-    const [menus, setMenus] = useState({})
+    const [{ menus }, dispatch] = useContext(Context)
+
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchMenus = async () => {
+            setLoading(true)
+
             const url = process.env.REACT_APP_API
             try {
                 const { data } = await axios.get(`${url}/menus`)
 
-                setMenus(data)
+                // setMenus(data)
+                dispatch({ 
+                    type: SET_MENUS,
+                    payload: data
+                })
             } catch (error) {
                 console.log(error.message)
             }
@@ -25,8 +35,12 @@ const Home = () => {
             setLoading(false)
         }
 
-        fetchMenus()
-    }, [])
+        if (Object.keys(menus).length === 0) {
+            console.log('fetch menu')
+            fetchMenus()
+        }
+
+    }, [dispatch, menus])
 
     const renderedMenu = () => {
 
