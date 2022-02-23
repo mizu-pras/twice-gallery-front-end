@@ -6,9 +6,7 @@ const ChangeLocation = ({ children }) => {
 
     useEffect(() => {
 
-        if (location.pathname === '/') {
-            window.scrollTo(0, 0)
-        }
+        window.scrollTo(0, 0)
 
     }, [location]);
 
