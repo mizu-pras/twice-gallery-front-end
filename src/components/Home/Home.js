@@ -22,7 +22,6 @@ const Home = () => {
             try {
                 const { data } = await axios.get(`${url}/menus`)
 
-                // setMenus(data)
                 dispatch({ 
                     type: SET_MENUS,
                     payload: data
@@ -35,7 +34,6 @@ const Home = () => {
         }
 
         if (Object.keys(menus).length === 0) {
-            console.log('fetch menu')
             fetchMenus()
         }
 
