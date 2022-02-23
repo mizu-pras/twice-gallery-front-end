@@ -80,7 +80,7 @@ const Main = () => {
                     <meta property="og:title" content="lia pics di Twitter" />
                     <meta property="og:type" content="article" />
                     <meta property="og:description" content="“always radiating the biggest girlfriend material vibes https://t.co/aGwuRIUD0z“" />
-                    <meta property="og:url" content="https://twitter.com/liarchive/status/1337370516139741185" />
+                    <meta property="og:url" content="https://twice-gallery.netlify.app/gallery/tzuyu/yes-i-am-tzuyu" />
                 </Helmet>
                 
                 <div className={styles.main}>
