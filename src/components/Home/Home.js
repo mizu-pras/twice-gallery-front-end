@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet} from 'react-helmet'
 import axios from 'axios'
 
 import styles from './Home.module.css'
@@ -60,6 +61,10 @@ const Home = () => {
 
     return (
         <>
+            <Helmet>
+                <title>TWICE Photo Collection</title>
+            </Helmet>
+
             <div className={`container ${styles.homeContainer}`}>
 
                 <div className={`text-center ${styles.homeTitleContainer}`}>
