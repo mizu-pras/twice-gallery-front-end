@@ -21,7 +21,7 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [lastPage, setLastPage] = useState(0)
 
-    const [state, dispatch] = useContext(Context);
+    const [, dispatch] = useContext(Context);
 
     const loadMoreHandle = () => {
         setCurrentPage(prevPage => prevPage + 1)
