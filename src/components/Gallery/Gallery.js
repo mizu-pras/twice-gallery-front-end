@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../../context/AppContext'
 import useWindowDimensions from '../../hook/dimension'
 
@@ -12,6 +12,15 @@ const Gallery = () => {
     const [{ data }] = useContext(Context)
 
     const [activeImage, setActiveImage] = useState({})
+    const [heightDummyImage, setHeightDummyImage] = useState(0)
+
+    useEffect(() => {
+
+        const heightByWidth = width <= 600 ? width / 2 : width > 1500 ? 1500 / 3 : width / 3
+
+        setHeightDummyImage(heightByWidth)   
+
+    }, [width])
 
     const renderedImage = () => {
         if (!data) {
@@ -58,7 +67,12 @@ const Gallery = () => {
                             <div key={`container-col-${idx}`} className={styles.galleryWrapper}>
                                 {
                                     column.map((img, idx) => (
-                                        <Image key={`col-1-${idx}`} url={img} setActiveImage={setActiveImage} />
+                                        <Image 
+                                            key={`col-1-${idx}`} 
+                                            url={img} 
+                                            setActiveImage={setActiveImage} 
+                                            heightDummyImage={heightDummyImage}
+                                        />
                                     ))
                                 }
                             </div>

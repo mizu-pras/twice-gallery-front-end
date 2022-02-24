@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styles from './Image.module.css'
 
-const Image = ({ url, setActiveImage }) => {
+const Image = ({ url, setActiveImage, heightDummyImage }) => {
     const [loaded, setLoaded] = useState(false)
     const imgEl = useRef(null)
 
@@ -18,7 +18,7 @@ const Image = ({ url, setActiveImage }) => {
 
     return (
         <div>
-            { !loaded && <div className={styles.loadingImage}></div> }
+            { !loaded && <div className={styles.loadingImage} style={{ height: `${heightDummyImage}px` }}></div> }
             <img
                 ref={imgEl}
                 onClick={handleClickImage}
