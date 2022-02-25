@@ -62,13 +62,13 @@ const Gallery = () => {
             <div className={styles.galleryContainer}>
 
                 {
-                    columns.map((column, idx) => {
+                    columns.map((column, idxCol) => {
                         return (
-                            <div key={`container-col-${idx}`} className={styles.galleryWrapper}>
+                            <div key={`container-col-${idxCol}`} className={styles.galleryWrapper}>
                                 {
-                                    column.map((img, idx) => (
+                                    column.map((img, idxRow) => (
                                         <Image 
-                                            key={`col-1-${idx}`} 
+                                            key={`col-${idxCol}-${idxRow}`} 
                                             url={img} 
                                             setActiveImage={setActiveImage} 
                                             heightDummyImage={heightDummyImage}
