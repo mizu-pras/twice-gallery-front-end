@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useWindowDimensions from '../../../hook/dimension'
 
 import { IoCloseOutline } from "react-icons/io5"
@@ -6,16 +6,24 @@ import { IoCloseOutline } from "react-icons/io5"
 import styles from './Modal.module.css'
 
 const Modal = ({ img, show, close }) => {
+    const [styleImg, setStyleImg] = useState({})
     const { width, height } = useWindowDimensions()
 
-    const windowOrientation = width > height ? 'landscape' : 'portrait'
-    const styleImg = windowOrientation === 'landscape' && img.orientation === 'portrait' 
-        ? {
-            height: '100%'
-        } 
-        : {
-            width: '100%'
-        }
+    useEffect(() => {
+
+        const windowOrientation = width > height ? 'landscape' : 'portrait'
+        const style = windowOrientation === 'landscape' && img.orientation === 'portrait' 
+            ? {
+                height: '100%'
+            } 
+            : {
+                width: '100%'
+            }
+        
+        setStyleImg(style)
+
+    }, [width, height, img])
+
 
     return (
         <div className={styles.modal} style={show ? { display: 'flex' } : {}} >
